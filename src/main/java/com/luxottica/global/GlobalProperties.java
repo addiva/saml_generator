@@ -1,11 +1,16 @@
 package com.luxottica.global;
 
 public class GlobalProperties {
+    //set with IDP entity ID || if this changes do update the metadata or the samlResponse will be considered as invalid
     public static String entityID = "MAX";
+    //put url of SP
     public static String destination = "maxiii";
+    //set with SP entity ID
     public static String audience = "Leonardo-QU";
+    //put your website, no need for real endpoints
     public static String ssoLocation = "test.max.xom";
     public static String sloLocation = "test.max.xom";
+    //create your own key
     public static String privateKeyStr = "-----BEGIN PRIVATE KEY-----\n" +
             "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDSKf6u1+xL+/2+\n" +
             "TVsH268yX5xatlO+nvGnkZlPjoVK2loABJbSacy8d2M8e89TwycDv92wVr//lOD+\n" +
@@ -34,6 +39,7 @@ public class GlobalProperties {
             "8yBIbxqGXJrn6b5mxRH50j/Go6myM63ZmpeLdL/CByWHjhkRLaEq/ZwdMqlQ6twm\n" +
             "axrNjp66llDQHG8ne3ZrWgU=\n" +
             "-----END PRIVATE KEY-----";
+            //create your own cartificate
     public static String certificateStr = "-----BEGIN CERTIFICATE-----\n" +
             "MIIDwDCCAqgCCQCscwr4QWU2kDANBgkqhkiG9w0BAQsFADCBoTELMAkGA1UEBhMC\n" +
             "SVQxEjAQBgNVBAgMCUxvbWJhcmRpYTEPMA0GA1UEBwwGTWlsYW5vMRIwEAYDVQQK\n" +
