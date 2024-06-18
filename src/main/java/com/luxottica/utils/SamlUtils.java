@@ -56,9 +56,7 @@ public class SamlUtils {
         response.setIssuer(issuer);
 
         Status status = new StatusBuilder().buildObject();
-        StatusCode statusCode = (StatusCode) XMLObjectProviderRegistrySupport.getBuilderFactory()
-                .getBuilder(StatusCode.DEFAULT_ELEMENT_NAME)
-                .buildObject(StatusCode.DEFAULT_ELEMENT_NAME);
+        StatusCode statusCode = new StatusCodeBuilder().buildObject();
         statusCode.setValue(StatusCode.SUCCESS);
         status.setStatusCode(statusCode);
         response.setStatus(status);
@@ -82,14 +80,10 @@ public class SamlUtils {
         subject.setNameID(nameID);
 
         // Create SubjectConfirmation
-        SubjectConfirmation subjectConfirmation = (SubjectConfirmation) XMLObjectProviderRegistrySupport.getBuilderFactory()
-                .getBuilder(SubjectConfirmation.DEFAULT_ELEMENT_NAME)
-                .buildObject(SubjectConfirmation.DEFAULT_ELEMENT_NAME);
+        SubjectConfirmation subjectConfirmation = new SubjectConfirmationBuilder().buildObject();
         subjectConfirmation.setMethod(SubjectConfirmation.METHOD_BEARER);
 
-        SubjectConfirmationData subjectConfirmationData = (SubjectConfirmationData) XMLObjectProviderRegistrySupport.getBuilderFactory()
-                .getBuilder(SubjectConfirmationData.DEFAULT_ELEMENT_NAME)
-                .buildObject(SubjectConfirmationData.DEFAULT_ELEMENT_NAME);
+        SubjectConfirmationData subjectConfirmationData = new SubjectConfirmationDataBuilder().buildObject();
         subjectConfirmationData.setNotOnOrAfter(new LocalDateTime().now().plusMinutes(10).toDateTime());
         subjectConfirmationData.setRecipient(destination);
 
@@ -103,12 +97,8 @@ public class SamlUtils {
         conditions.setNotBefore(new LocalDateTime().now().minusMinutes(5).toDateTime());
         conditions.setNotOnOrAfter(new LocalDateTime().now().plusMinutes(10).toDateTime());
 
-        AudienceRestriction audienceRestriction = (AudienceRestriction) XMLObjectProviderRegistrySupport.getBuilderFactory()
-                .getBuilder(AudienceRestriction.DEFAULT_ELEMENT_NAME)
-                .buildObject(AudienceRestriction.DEFAULT_ELEMENT_NAME);
-        Audience audienceObj = (Audience) XMLObjectProviderRegistrySupport.getBuilderFactory()
-                .getBuilder(Audience.DEFAULT_ELEMENT_NAME)
-                .buildObject(Audience.DEFAULT_ELEMENT_NAME);
+        AudienceRestriction audienceRestriction = new AudienceRestrictionBuilder().buildObject();
+        Audience audienceObj = new AudienceBuilder().buildObject();
         audienceObj.setAudienceURI(audience);
         audienceRestriction.getAudiences().add(audienceObj);
 
@@ -116,18 +106,12 @@ public class SamlUtils {
         assertion.setConditions(conditions);
 
         // Create AuthnStatement
-        AuthnStatement authnStatement = (AuthnStatement) XMLObjectProviderRegistrySupport.getBuilderFactory()
-                .getBuilder(AuthnStatement.DEFAULT_ELEMENT_NAME)
-                .buildObject(AuthnStatement.DEFAULT_ELEMENT_NAME);
+        AuthnStatement authnStatement = new AuthnStatementBuilder().buildObject();
         authnStatement.setAuthnInstant(new DateTime());
         authnStatement.setSessionIndex("_" + generateRandomIdentifier());
 
-        AuthnContext authnContext = (AuthnContext) XMLObjectProviderRegistrySupport.getBuilderFactory()
-                .getBuilder(AuthnContext.DEFAULT_ELEMENT_NAME)
-                .buildObject(AuthnContext.DEFAULT_ELEMENT_NAME);
-        AuthnContextClassRef authnContextClassRef = (AuthnContextClassRef) XMLObjectProviderRegistrySupport.getBuilderFactory()
-                .getBuilder(AuthnContextClassRef.DEFAULT_ELEMENT_NAME)
-                .buildObject(AuthnContextClassRef.DEFAULT_ELEMENT_NAME);
+        AuthnContext authnContext = new AuthnContextBuilder().buildObject();
+        AuthnContextClassRef authnContextClassRef = new AuthnContextClassRefBuilder().buildObject();
         authnContextClassRef.setAuthnContextClassRef("UNSPECIFIED");
         authnContext.setAuthnContextClassRef(authnContextClassRef);
 

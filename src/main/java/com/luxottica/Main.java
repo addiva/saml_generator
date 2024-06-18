@@ -12,7 +12,7 @@ public class Main {
             String meta = MetadataUtils.generator();
             System.out.println("Metadata:");
             System.out.println(meta);
-            String saml = SamlUtils.generate(new Claims("nome","cognome","email@dominio.al","IT",null,"id"));
+            String saml = SamlUtils.generate(new Claims("name","surname","email@domaini.al","IT","store code","userId"));
             System.out.println();
             System.out.println("Saml:");
             System.out.println(saml);
